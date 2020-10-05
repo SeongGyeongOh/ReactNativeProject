@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { Button, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, Button, Text, View } from 'react-native';
 
 export default class CafeInfo extends Component{
 
@@ -13,30 +12,32 @@ export default class CafeInfo extends Component{
     }
     render(){
         return (
-            <View>
+            <View style={{flex:1}}>
                 <Text>카페 정보창임</Text>
-                {/* <Button title='화면전환' onPress={()=>{this.props.navigation.navigate('review')}}></Button> */}
-                {/* <Button title="카페정보 읽어오기" onPress={this.clickBtn}></Button> */}
+                {/* <Button title="버튼!!!" onPress={this.showList}></Button> */}
+    
                 <FlatList
-                data={this.state.data}
-                renderItem={(item, index)=>{
-                    return (
-                        <View>
-                            <Text>{item.CAFE_NM}</Text>
-                            <Text>{item.SMPL_INTRO}</Text>
-                        </View>
-                    );
-                }}
-                    >
-                    
+                    data={this.state.data}
+                    renderItem={(obj)=>{
+                        return(
+                            <Text>{obj.item.CAFE_NM}</Text>
+                        );
+                    }}>
                 </FlatList>
 
             </View>
         );
     }
 
+    showList=()=>{
+        // alert(this.state.data[0].CAFE_NM);
+        // return(
+
+        // );
+    }
+
     clickBtn=()=>{
-        let url='http://openapi.seoul.go.kr:8088/4753614f706b616d34347a6e614361/json/jobCafeOpenInfo/1/5';
+        let url='http://openapi.seoul.go.kr:8088/4753614f706b616d34347a6e614361/json/jobCafeOpenInfo/1/1000';
         fetch(url)
             .then((response)=>response.json())
             .then((resJson)=> {this.setState({data:resJson.jobCafeOpenInfo.row})});
@@ -47,21 +48,6 @@ export default class CafeInfo extends Component{
             this.clickBtn();
         }
         this.clickBtn();
-
-            // return(
-            //     <FlatList
-            //     data={this.state.data}
-            //     renderItem={(item, index)=>{
-            //         return (
-            //             <View>
-            //                 <Text>{item.CAFE_NM}</Text>
-            //                 <Text>{item.SMPL_INTRO}</Text>
-            //             </View>
-            //         );
-            //     }}
-            //     >
-                    
-            // </FlatList>
-            // );
     }
+
 } 
