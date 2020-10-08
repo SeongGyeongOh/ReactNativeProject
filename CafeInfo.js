@@ -17,12 +17,9 @@ export default class CafeInfo extends Component{
     render(){
         return (
             <View style={styles.root}>
-                <Text>카페 정보창임</Text>
-                {/* <Button title="버튼!!!" onPress={this.showList}></Button> */}
-    
                 <CafeInfoList 
                     cafeuri={infoUri}
-                    onPress={()=> this.props.navigation.navigate('review')}>
+                    onPress={(item)=> this.props.navigation.navigate('review', {item})}>
                 </CafeInfoList>
 
             </View>

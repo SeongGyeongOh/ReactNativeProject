@@ -1,32 +1,64 @@
 import React, {Component} from 'react';
-import { Button, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, Text, View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 
 
 export default class Review extends Component{
     
-    // constructor(){
-    //     super();
-    //     this.state={
-    //         data:null
-    //     }
-    // }
+    constructor(){
+        super();
+        this.state={
+            data:null,
+            text:"aa"
+        }
+    }
     render(){
         // const item = this.props.route.params;
 
-        return(
-            <View>
-                <Text>여기는 아마도 리뷰창!!</Text>
-                <Button title="버튼이다" onPress={()=>this.loadData()}></Button>
-            </View>
+        return this.state.data?
+        (
+            <ScrollView>
+                <View>
+                    <Image source={{uri:this.state.data.FILE_NM}} style={{width:Dimensions.get('window').width, height:300}}></Image>
+                    <Text style={styles.covertext}>{this.state.data.CAFE_NM}</Text>
+                </View>
+                <View>
+                    <Text>{this.state.data.CAFE_NM}</Text>
+                    <Text>운영시간 : {this.state.data.USE_DT}</Text> 
+                    <Text>{this.state.data.SMPL_INTRO}</Text> 
+                    <Text>{this.state.data.SPACE_INFRO}</Text> 
+                    <Text>{this.state.data.FACLT_INFO1}</Text> 
+                    <Text>{this.state.data.BASS_ADRES_CN}</Text> 
+                </View>
+            </ScrollView>
+        ) :
+        (
+            <ActivityIndicator color='orange' size='large'></ActivityIndicator>
         );
     }
 
-    loadData=()=>{
-        // this.setState({data:item});
-        alert('aa');
-        
+    show=()=>{
+        this.setState({text:this.state.data.CAFE_NM});
     }
-    // componentDidMount(){
-    //     this.loadData();
-    // }
+
+    loadData=()=>{
+        const {item}=this.props.route.params;
+        this.setState({data:item});
+    }
+    componentDidMount(){
+        if(this.props.route.params) this.loadData();
+        this.loadData();
+    }
 }
+
+const styles=StyleSheet.create({
+    covertext:{
+        position:'absolute',
+        backgroundColor:'#000000af',
+        width:'100%',
+        padding:16,
+        bottom:0,
+        color:'white',
+        fontSize:18,
+        fontWeight:"bold"
+    }
+});

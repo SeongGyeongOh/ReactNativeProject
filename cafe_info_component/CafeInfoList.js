@@ -22,7 +22,9 @@ export default class CafeInfoList extends Component{
                         return(
                             <TouchableOpacity 
                                 style={styles.cafeItem}
-                                onPress={()=> this.props.onPress()}
+
+                                // *******Review.js로 넘어가는 onPress - CafeInfo.js에서 받아옴**********//
+                                onPress={()=> this.props.onPress(item)}
                                 >
                                 <Image 
                                     source={{uri:item.FILE_NM}}
