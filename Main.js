@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import CafeInfo from './CafeInfo';
 import Review from './Review';
 
@@ -13,8 +13,15 @@ export default class Main extends Component{
         return(
             <NavigationContainer>
                 <Stack.Navigator>
-                    <Stack.Screen name="cafeinfo" component={CafeInfo}></Stack.Screen>
-                    <Stack.Screen name="review" component={Review}></Stack.Screen>
+                    <Stack.Screen
+                        options={{
+                            title:"일자리카페 목록"
+                        }}
+                        name="cafeinfo" component={CafeInfo}></Stack.Screen>
+                    <Stack.Screen
+                        options={{
+                            title:"상세정보"
+                        }} name="review" component={Review}></Stack.Screen>
                 </Stack.Navigator>
             </NavigationContainer>
         );

@@ -21,13 +21,13 @@ export default class Review extends Component{
                     <Image source={{uri:this.state.data.FILE_NM}} style={{width:Dimensions.get('window').width, height:300}}></Image>
                     <Text style={styles.covertext}>{this.state.data.CAFE_NM}</Text>
                 </View>
-                <View>
-                    <Text>{this.state.data.CAFE_NM}</Text>
-                    <Text>운영시간 : {this.state.data.USE_DT}</Text> 
+                <View style={styles.rootview}>
+                    {/* <Text>{this.state.data.CAFE_NM}</Text> */}
+                    <Text style={styles.worktime}>운영시간 : {this.state.data.USE_DT}</Text> 
+                    <Text style={styles.worktime}>위치 : {this.state.data.BASS_ADRES_CN}</Text> 
                     <Text>{this.state.data.SMPL_INTRO}</Text> 
                     <Text>{this.state.data.SPACE_INFRO}</Text> 
                     <Text>{this.state.data.FACLT_INFO1}</Text> 
-                    <Text>{this.state.data.BASS_ADRES_CN}</Text> 
                 </View>
             </ScrollView>
         ) :
@@ -51,6 +51,9 @@ export default class Review extends Component{
 }
 
 const styles=StyleSheet.create({
+    rootview:{
+        padding:8
+    },
     covertext:{
         position:'absolute',
         backgroundColor:'#000000af',
@@ -60,5 +63,10 @@ const styles=StyleSheet.create({
         color:'white',
         fontSize:18,
         fontWeight:"bold"
+    },
+    worktime:{
+        borderBottomWidth:0.5,
+        borderColor:'black',
+        marginBottom:16
     }
 });

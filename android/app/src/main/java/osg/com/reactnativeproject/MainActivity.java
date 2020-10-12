@@ -1,4 +1,4 @@
-package com.reactnativeproject;
+package osg.com.reactnativeproject;
 
 import com.facebook.react.ReactActivity;
 
